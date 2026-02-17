@@ -3,13 +3,17 @@
     import Grain from '$lib/components/Grain.svelte';
     import Lume from '$lib/components/Lume.svelte';
     import SilenceListener from '$lib/components/SilenceListener.svelte';
+    import Acoustics from '$lib/components/Acoustics.svelte';
+    import SleepFirst from '$lib/components/SleepFirst.svelte';
    
     // Global layout logic
 </script>
 
 <Grain />
 <Lume />
+<SleepFirst />
 <SilenceListener />
+<Acoustics />
 <slot />
 
 

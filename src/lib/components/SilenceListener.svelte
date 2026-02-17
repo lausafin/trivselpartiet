@@ -13,9 +13,11 @@
     }
 
     function resetTimer() {
-        visible = false;
-        if (timer) clearTimeout(timer); // Check if timer exists
+        if (visible) return; // Don't hide if already visible (let the user interact)
         
+        // Clear previous timer
+        if (timer) clearTimeout(timer); 
+
         // Only set timer if we are in browser environment
         if (typeof window !== 'undefined') {
             timer = setTimeout(showNav, IDLE_TIME);
@@ -31,7 +33,9 @@
 </script>
 
 <svelte:window 
-    on:mousemove={resetTimer} 
+    on:mousemove={() => {
+        if (!visible) resetTimer();
+    }} 
     on:keydown={resetTimer} 
     on:scroll={resetTimer} 
     on:click={resetTimer}
@@ -41,6 +45,8 @@
     <nav 
         class="silence-listener" 
         transition:fade={{ duration: 1500, easing: expoOut }}
+        on:mouseenter={() => clearTimeout(timer)}
+        on:mousemove|stopPropagation
     >
         <ul>
             <li><a href="/listen">Listen</a></li>
