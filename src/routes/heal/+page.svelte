@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import { fade } from 'svelte/transition';
+    import HonestyBar from '$lib/components/HonestyBar.svelte';
 
     let visible = false;
     onMount(() => visible = true);
@@ -22,6 +23,11 @@
             Et samfund, der ikke værdsætter hvile, kan ikke værdsætte liv. Vi prioriterer den mentale og fysiske genopretning af hvert enkelt individ.
         </p>
     </article>
+
+    <HonestyBar 
+        sacrifice="Kortere åbningstider og langsommere levering."
+        benefit="Mere overskud, mindre stress og et samfund i balance med sin biologi."
+    />
 </section>
 {/if}
 

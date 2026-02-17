@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import { fade } from 'svelte/transition';
+    import HonestyBar from '$lib/components/HonestyBar.svelte';
 
     let visible = false;
     onMount(() => visible = true);
@@ -22,6 +23,11 @@
             Vi værdsætter det langsomme håndværk, den lokale udveksling og den viden, det tager et liv at mestre.
         </p>
     </article>
+
+    <HonestyBar 
+        sacrifice="Lavere BNP-vækst og færre billige importvarer."
+        benefit="Lokale arbejdspladser, højere produktkvalitet og et økosystem i balance."
+    />
 </section>
 {/if}
 

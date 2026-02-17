@@ -22,10 +22,24 @@
             Gennemsigtighed er ikke en målestok; det er et materiale. Ligesom glas skal det holdes rent, så man kan se igennem det.
         </p>
     </article>
+
+    <div class="coming-soon">
+        <p>Borgerhøring under opbygning.</p>
+    </div>
 </section>
 {/if}
 
 <style>
+    .coming-soon {
+        margin-top: 4rem;
+        font-family: var(--f-mono);
+        color: var(--c-depth);
+        opacity: 0.5;
+        font-size: 0.9rem;
+        padding-top: 2rem;
+        border-top: 1px dotted rgba(10, 10, 10, 0.3);
+    }
+
     .path-container {
         padding: 8rem 2rem;
         max-width: 800px;

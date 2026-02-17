@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import { fade } from 'svelte/transition';
+    import HonestyBar from '$lib/components/HonestyBar.svelte';
 
     let visible = false;
     onMount(() => visible = true);
@@ -22,6 +23,11 @@
             Steder hvor du er borger, ikke forbruger.
         </p>
     </article>
+
+    <HonestyBar 
+        sacrifice="Mindre privat forbrug og færre individuelle kvadratmeter."
+        benefit="Stærkere fællesskaber, mindre ensomhed og adgang til flere ressourcer."
+    />
 </section>
 {/if}
 
