@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <link rel="icon" href="https://fav.farm/🌾" />
+		<meta name="viewport" content="width=device-width" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=JetBrains+Mono:wght@100;300&display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --c-base: #F5F5F0;
+                --c-depth: #0A0A0A;
+                --c-life: #FDBA74;
+                --f-serif: 'Cormorant Garamond', serif;
+                --f-mono: 'JetBrains Mono', monospace;
+            }
+            body {
+                background-color: var(--c-base);
+                color: var(--c-depth);
+                font-family: var(--f-serif);
+                margin: 0;
+                overflow-x: hidden;
+            }
+        </style>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
