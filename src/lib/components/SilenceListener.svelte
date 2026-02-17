@@ -49,10 +49,10 @@
         on:mousemove|stopPropagation
     >
         <ul>
-            <li><a href="/listen">Listen</a></li>
-            <li><a href="/grow">Grow</a></li>
-            <li><a href="/belong">Belong</a></li>
-            <li><a href="/heal">Heal</a></li>
+            <li><a href="/listen">Lyt</a></li>
+            <li><a href="/grow">Gro</a></li>
+            <li><a href="/belong">Hør Til</a></li>
+            <li><a href="/heal">Hel</a></li>
         </ul>
     </nav>
 {/if}

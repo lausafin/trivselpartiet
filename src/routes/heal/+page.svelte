@@ -9,17 +9,17 @@
 {#if visible}
 <section class="path-container" transition:fade={{ duration: 1000 }}>
     <header>
-        <h1>Heal</h1>
-        <p class="subtitle">Sleep First</p>
+        <h1>Hel</h1>
+        <p class="subtitle">Søvn Først</p>
     </header>
     
     <article>
         <p>
-            How did you sleep last night?
+            Hvordan sov du i nat?
         </p>
         <p>
-            This question is the foundation of our health policy. 
-            A society that does not value rest cannot value life. We prioritize the mental and physical restoration of every individual.
+            Dette spørgsmål er fundamentet for vores sundhedspolitik.
+            Et samfund, der ikke værdsætter hvile, kan ikke værdsætte liv. Vi prioriterer den mentale og fysiske genopretning af hvert enkelt individ.
         </p>
     </article>
 </section>

@@ -9,17 +9,17 @@
 {#if visible}
 <section class="path-container" transition:fade={{ duration: 1000 }}>
     <header>
-        <h1>Belong</h1>
-        <p class="subtitle">The Human Rhythm</p>
+        <h1>Hør Til</h1>
+        <p class="subtitle">Den Menneskelige Rytme</p>
     </header>
     
     <article>
         <p>
-            To belong is to be recognized by your surroundings.
+            At høre til er at blive genkendt af sine omgivelser.
         </p>
         <p>
-            We nurture the spaces between work and home. The third places. The community gardens, the libraries, the shared workshops. 
-            Places where you are a citizen, not a consumer.
+            Vi plejer rummene mellem arbejde og hjem. De tredje steder. Fælleshaverne, bibliotekerne, de fælles værksteder.
+            Steder hvor du er borger, ikke forbruger.
         </p>
     </article>
 </section>

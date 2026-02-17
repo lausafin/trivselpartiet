@@ -1,7 +1,9 @@
 <script>
     import { onMount, onDestroy } from 'svelte';
-    import * as Tone from 'tone';
+    // Remove static import to prevent SSR issues with Tone.js
+    // import * as Tone from 'tone'; 
 
+    let Tone; // Will hold the dynamically imported module
     let isPlaying = false;
     let synth, filter, lfo;
 
@@ -10,6 +12,9 @@
     const NOTES = ["F#2", "A#2", "C#3", "F#3"];
 
     async function initAudio() {
+        if (!Tone) {
+            Tone = await import('tone');
+        }
         await Tone.start();
         
         // Setup the "Voice" - A warm, filtered polyphonic synth
@@ -59,13 +64,13 @@
     function toggleAudio() {
         if (isPlaying) {
             // Fade out
-            Tone.Destination.mute = true;
+            if (Tone) Tone.Destination.mute = true;
             isPlaying = false;
         } else {
             if (!synth) {
                 initAudio();
             } else {
-                Tone.Destination.mute = false;
+                if (Tone) Tone.Destination.mute = false;
                 isPlaying = true;
                 playGenerativeLoop();
             }

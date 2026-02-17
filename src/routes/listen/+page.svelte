@@ -9,17 +9,17 @@
 {#if visible}
 <section class="path-container" transition:fade={{ duration: 1000 }}>
     <header>
-        <h1>Listen</h1>
-        <p class="subtitle">The Grounded Pivot</p>
+        <h1>Lyt</h1>
+        <p class="subtitle">Det Jordnære Udgangspunkt</p>
     </header>
     
     <article>
         <p>
-            A tired mind cannot lead. We begin by listening to the silence between the noise.
-            Here, we document the unvarnished reality of the citizen experience.
+            Et træt sind kan ikke lede. Vi begynder med at lytte til stilheden mellem støjen.
+            Her dokumenterer vi den usminkede virkelighed af borgerens oplevelse.
         </p>
         <p>
-            Transparency is not a metric; it is a material. Like glass, it must be kept clean to see through.
+            Gennemsigtighed er ikke en målestok; det er et materiale. Ligesom glas skal det holdes rent, så man kan se igennem det.
         </p>
     </article>
 </section>

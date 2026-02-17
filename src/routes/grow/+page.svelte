@@ -9,17 +9,17 @@
 {#if visible}
 <section class="path-container" transition:fade={{ duration: 1000 }}>
     <header>
-        <h1>Grow</h1>
-        <p class="subtitle">Feet in the Mud</p>
+        <h1>Gro</h1>
+        <p class="subtitle">Fødderne i Mulden</p>
     </header>
     
     <article>
         <p>
-            Growth is not infinite expansion. It is the deepening of roots.
+            Vækst er ikke uendelig ekspansion. Det er en fordybelse af rødderne.
         </p>
         <p>
-            We propose a shift from economic acceleration to economic resilience. 
-            We value the slow craft, the local exchange, and the knowledge that takes a lifetime to master.
+            Vi foreslår et skift fra økonomisk acceleration til økonomisk modstandskraft.
+            Vi værdsætter det langsomme håndværk, den lokale udveksling og den viden, det tager et liv at mestre.
         </p>
     </article>
 </section>
