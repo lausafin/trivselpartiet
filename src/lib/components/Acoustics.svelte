@@ -5,7 +5,7 @@
 
     let Tone; // Will hold the dynamically imported module
     let isPlaying = false;
-    let synth, filter, lfo;
+    let synth, filter, reverb, loopTimeout;
 
     // A low, warm drone in F# pentatonic
     // F#2, A#2, C#3, F#3
@@ -24,7 +24,7 @@
             octaves: 2.6
         }).toDestination().start();
 
-        const reverb = new Tone.Reverb({
+        reverb = new Tone.Reverb({
             decay: 5,
             wet: 0.5
         }).toDestination();
@@ -56,9 +56,11 @@
         const duration = Math.random() * 4 + 2; // 2-6 seconds
         const delay = Math.random() * 3 + 1; // 1-4 seconds wait
 
-        synth.triggerAttackRelease(note, duration);
+        if (synth && !synth.disposed) {
+            synth.triggerAttackRelease(note, duration);
+        }
 
-        setTimeout(playGenerativeLoop, (duration + delay) * 1000);
+        loopTimeout = setTimeout(playGenerativeLoop, (duration + delay) * 1000);
     }
 
     function toggleAudio() {
@@ -78,9 +80,13 @@
     }
 
     onDestroy(() => {
+        isPlaying = false;
+        if (loopTimeout) clearTimeout(loopTimeout);
+        
         if (synth) {
-            synth.dispose();
-            filter.dispose();
+            if (!synth.disposed) synth.dispose();
+            if (filter && !filter.disposed) filter.dispose();
+            if (reverb && !reverb.disposed) reverb.dispose();
         }
     });
 </script>

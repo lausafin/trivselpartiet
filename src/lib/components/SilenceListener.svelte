@@ -25,21 +25,23 @@
     }
 
     onMount(() => {
-        resetTimer();
+        // Disabled for debugging interaction issues
+        // resetTimer();
         return () => {
             if (timer) clearTimeout(timer);
         };
     });
 </script>
 
-<svelte:window 
+<!-- Window listeners temporarily disabled -->
+<!-- <svelte:window 
     on:mousemove={() => {
         if (!visible) resetTimer();
     }} 
     on:keydown={resetTimer} 
     on:scroll={resetTimer} 
     on:click={resetTimer}
-/>
+/> -->
 
 {#if visible}
     <nav 

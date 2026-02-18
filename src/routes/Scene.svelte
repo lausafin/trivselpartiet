@@ -1,93 +1,60 @@
-<script>
+<script lang="ts">
   import { T, useFrame } from '@threlte/core'
-  import { OrbitControls, Environment, Float } from '@threlte/extras'
-  import * as THREE from 'three';
+  import { OrbitControls, Float, ContactShadows, Environment } from '@threlte/extras'
+  import { pillars } from '$lib/data/pillars';
+  import PillarMesh from '$lib/components/3d/PillarMesh.svelte';
 
-  let mesh;
-  const geometry = new THREE.IcosahedronGeometry(2, 10); // Reduced detail for performance
-  
-  // Store original positions for noise calculation
-  const positionAttribute = geometry.getAttribute('position');
-  const vertex = new THREE.Vector3();
-  const originalPositions = [];
-  
-  for (let i = 0; i < positionAttribute.count; i++) {
-      vertex.fromBufferAttribute(positionAttribute, i);
-      originalPositions.push(vertex.clone());
-  }
+  // State for rotation
+  let rotation = 0;
 
-  useFrame(({ clock }) => {
-    if (!mesh) return;
-    
-    const time = clock.getElapsedTime() * 0.5;
-    const positions = mesh.geometry.attributes.position;
-
-    for (let i = 0; i < positions.count; i++) {
-      const original = originalPositions[i];
-      // Organic noise-like movement using sine waves
-      // A "breathing" rhythm mixed with a "water" ripple
-      const waveX = 0.2 * Math.sin(original.x * 2 + time);
-      const waveY = 0.2 * Math.cos(original.y * 1.5 + time);
-      
-      // Gentle pulse
-      const breath = 1 + 0.05 * Math.sin(time * 0.8);
-
-      vertex.copy(original).multiplyScalar(breath).addScalar(waveX + waveY);
-      
-      positions.setXYZ(i, vertex.x, vertex.y, vertex.z);
-    }
-    
-    positions.needsUpdate = true;
-    mesh.rotation.y += 0.001; // Very slow drift
-  })
+  useFrame((_, delta) => {
+    rotation += delta * 0.05; // Slow drift
+  });
 </script>
-
-<Environment preset="city" />
 
 <T.PerspectiveCamera
   makeDefault
-  position={[0, 0, 8]}
-  fov={45}
+  position={[6, 4, 6]}
+  fov={45} 
 >
-    <!-- Dampened controls for a 'heavy' feel -->
     <OrbitControls 
-        enableZoom={false} 
-        enablePan={false}
-        autoRotate={false}
-        enableDamping={true}
+        enablePan={false} 
+        enableZoom={true}
+        autoRotate={true}
+        autoRotateSpeed={0.3}
+        maxPolarAngle={Math.PI / 1.5}
+        minPolarAngle={Math.PI / 3}
+        target={[0, 0, 0]}
+        enableDamping={true} 
         dampingFactor={0.05}
     />
 </T.PerspectiveCamera>
 
-<!-- Soft, mysterious lighting -->
-<T.AmbientLight intensity={0.8} color="#F5F5F0" />
+<!-- Reduce shadow map size and quality for performance -->
 <T.DirectionalLight 
-    position={[5, 5, 5]} 
+    position={[5, 10, 5]} 
     intensity={1.2} 
-    color="#FDBA74" 
+    castShadow
+    shadow.mapSize.width={1024}
+    shadow.mapSize.height={1024}
 />
-<T.PointLight position={[-5, -5, -5]} intensity={0.5} color="#0A0A0A" />
+<T.AmbientLight intensity={0.4} />
 
-<Float
-    speed={1.5} 
-    rotationIntensity={0.2} 
-    floatIntensity={0.5}
->
-    <T.Mesh 
-        bind:ref={mesh}
-        geometry={geometry}
-        position={[0, 0, 0]}
+<!-- Fog for depth -->
+<T.Fog args={['#F5F5F0', 10, 30]} />
+
+<!-- Add an invisible plane to capture raycasting if needed, but the pillars should be enough. 
+     Maybe we add raycast debugging? -->
+
+<T.Group rotation.y={rotation}>
+  {#each pillars as pillar (pillar.id)}
+    <Float 
+        speed={1 + Math.random()} 
+        rotationIntensity={Math.random()} 
+        floatIntensity={Math.random()}
     >
-        <T.MeshPhysicalMaterial 
-            color="#F5F5F0" 
-            roughness={0.6}
-            metalness={0.1}
-            transmission={0.0}
-            thickness={1.5}
-            clearcoat={0.3}
-            clearcoatRoughness={0.2}
-            flatShading={false}
-        />
-    </T.Mesh>
-</Float>
+        <PillarMesh {pillar} />
+    </Float>
+  {/each}
+</T.Group>
 

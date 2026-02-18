@@ -2,6 +2,7 @@
     import { Canvas } from '@threlte/core';
     import Scene from './Scene.svelte';
     import { onMount } from 'svelte';
+    import { browser } from '$app/environment';
     import gsap from 'gsap';
 
     let title;
@@ -18,6 +19,7 @@
         </Canvas>
     </div>
 
+    <!-- UI Overlay (Important: pointer-events: none allows clicking through to canvas) -->
     <div class="ui-layer">
         <h1 bind:this={title}>Trivselpartiet</h1>
     </div>
@@ -28,6 +30,7 @@
         width: 100vw;
         height: 100vh;
         position: relative;
+        overflow: hidden;
     }
     .canvas-wrapper {
         position: absolute;
@@ -35,7 +38,9 @@
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: 0;
+        /* Ensure canvas is interactive */
+        z-index: 1;
+        pointer-events: auto !important; 
     }
     .ui-layer {
         position: absolute;
@@ -47,7 +52,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        pointer-events: none;
+        /* CRITICAL: Let clicks pass through */
+        pointer-events: none !important;
     }
     h1 {
         font-family: var(--f-serif); /* Cormorant Garamond */
@@ -58,5 +64,6 @@
         mix-blend-mode: multiply;
         position: relative;
         z-index: 20;
+        pointer-events: none !important; /* Ensure title doesn't block 3D */
     }
 </style>

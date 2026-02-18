@@ -12,6 +12,7 @@
         if (!sessionStorage.getItem('trivsel_sleep_check')) {
             visible = true;
         } else {
+            console.log("Sleep check already answered");
             answered = true;
         }
     });
@@ -55,7 +56,8 @@
         width: 100vw;
         height: 100vh;
         z-index: 9999;
-        background: var(--c-base);
+        background: rgba(245, 245, 240, 0.85); /* 85% opacity */
+        backdrop-filter: blur(10px); /* Frosted glass effect */
         display: flex;
         justify-content: center;
         align-items: center;

@@ -29,19 +29,20 @@
 <style>
     .lume {
         position: fixed;
-        width: 60vw;
-        height: 60vw;
+        width: 400px;
+        height: 400px;
         transform: translate(-50%, -50%);
         background: radial-gradient(
             circle, 
-            rgba(253, 186, 116, 0.15) 0%, /* Solaris Gold / Amber */
-            rgba(253, 186, 116, 0.05) 30%, 
+            rgba(253, 186, 116, 0.4) 0%, 
+            rgba(253, 186, 116, 0.1) 40%, 
             transparent 70%
         );
         pointer-events: none;
-        z-index: 100; /* Behind UI, above background */
-        mix-blend-mode: screen;
+        z-index: 9998; /* Just below grain */
+        mix-blend-mode: normal; /* Let's try normal mode to ensure visibility */
         border-radius: 50%;
-        filter: blur(80px); /* Enhance softness */
+        filter: blur(60px);
+        will-change: left, top; /* Performance optimization */
     }
 </style>
